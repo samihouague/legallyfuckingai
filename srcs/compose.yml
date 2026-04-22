@@ -1,0 +1,75 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    compose.yml                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: souaguen <souaguen@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/09/27 03:35:31 by souaguen          #+#    #+#              #
+#    Updated: 2025/10/02 12:52:44 by souaguen         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+services:
+  mariadb:
+    build: ./mariadb
+    image: mariadb
+    container_name: mariadb
+    restart: always
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD_FILE=${DB_PASSWORD_FILE}
+    secrets:
+      - db_password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - dbnet
+  frontend:
+    build: ./frontend
+    restart: always
+    image: frontend
+    container_name: frontend
+    networks:
+      - http
+    expose:
+      - 3001
+  auth:
+    build: ./auth
+    restart: always
+    image: auth
+    container_name: auth
+    networks:
+      - http
+      - dbnet
+    expose:
+      - 3000
+  nginx:
+    build: ./nginx
+    image: nginx
+    container_name: nginx
+    depends_on:
+      - auth
+      - frontend
+    restart: always
+    ports:
+      - "443:443"
+    networks:
+      - http
+
+networks:
+  http:
+  dbnet:
+
+secrets:
+  db_password:
+    file: ../secrets/db_password.txt
+
+volumes:
+  db_data:
+    driver: local
+    driver_opts:
+      device: /home/${USER}/data/mariadb
+      o: bind
+      type: none
