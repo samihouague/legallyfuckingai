@@ -1,4 +1,4 @@
-# ⚖️ Legal AI Assistant — Contracts & Document Generator
+# 🤖 Local AI Assistant — Documents & Workflow Generator
 
 ![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
 ![Node.js](https://img.shields.io/badge/Node.js-Backend-green)
@@ -10,33 +10,35 @@
 
 ## 📌 Overview
 
-**Legal AI Assistant** is a fullstack AI-powered platform that provides **legal guidance and automated document generation**.
+**Local AI Assistant** is a fullstack AI-powered platform designed to run **fully on-premise**, enabling organizations to automate document creation and interact with a private AI system.
 
 It allows users to:
-- 💬 Ask legal questions (contracts, rights, procedures, etc.)
-- ⚖️ Receive AI-generated legal advice (LLM-based)
+- 💬 Ask questions to a local AI assistant
+- 🧠 Get AI-generated responses based on internal context
 - 📄 Generate professional documents:
   - Contracts
   - Letters
   - Quotes / Estimates
-  - Legal templates
+  - Business templates
 - 📥 Export documents as **PDF** and **DOCX**
 
-⚠️ *This project is for educational purposes and does not replace professional legal advice.*
+🔐 *All data is processed locally. No external API calls are required.*
+
+⚠️ *This project is intended for internal use and development purposes.*
 
 ---
 
 ## 🧠 Core Features
 
-### 💬 Legal AI Assistant
+### 💬 AI Assistant
 - Real-time AI chat (streaming responses)
-- Context-aware legal explanations
-- Powered by **Ollama LLM**
+- Context-aware responses based on prompts
+- Powered by **local LLM (Ollama)**
 
 ---
 
 ### 📄 Document Generation
-Automatically generates structured documents from AI responses:
+Automatically generates structured documents from AI outputs:
 
 - 📑 Markdown generation
 - 📄 PDF export (Puppeteer)
@@ -44,8 +46,8 @@ Automatically generates structured documents from AI responses:
 
 Supported document types:
 - Contracts
-- Legal letters
-- Requests / claims
+- Business letters
+- Requests / formal messages
 - Quotes and estimates
 
 ---
@@ -63,10 +65,9 @@ User
 Nginx (Reverse Proxy)
 ├── Frontend (React)
 ├── Auth API (Node.js + Sequelize)
-└── Legal LLM API (WebSocket + Ollama)
+└── AI API (WebSocket + Ollama)
 ↓
 MariaDB
-
 
 ---
 
@@ -106,4 +107,3 @@ git clone <repo-url>
 cd srcs
 echo "your_db_password" > ../secrets/db_password.txt
 docker compose up --build
-```
