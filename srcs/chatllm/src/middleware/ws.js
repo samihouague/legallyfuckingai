@@ -47,7 +47,8 @@ export const llmSubscribe = (ws) => {
             messages,
             think,
             chatBoxId,
-            ontoken: (data) => ws.send(JSON.stringify(data)),
-        });
+            userId: ws.userId,
+            ontoken: (data) => ws.send(JSON.stringify({...data, chatBoxId, userId: ws.userId})),
+        }, (data) => ws.send(JSON.stringify({...data, chatBoxId, userId: ws.userId})));
     });
 }

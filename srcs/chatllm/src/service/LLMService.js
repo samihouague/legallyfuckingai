@@ -5,13 +5,13 @@ class LLMService {
         this.provider = provider;
     }
 
-    async generateChat({ messages, think = true, chatBoxId, ontoken }, wsCallback) {
+    async generateChat({ messages, think = true, chatBoxId, ontoken, userId }, wsCallback) {
         try {
             let chatBox = await ChatBox.findByPk(chatBoxId);
 
             if (!chatBox) {
                 chatBox = ChatBox.build({
-                    idUser: ws.userId,
+                    idUser: userId,
                     title: "Nouvelle conversation",
                 });
                 chatBox = await chatBox.save();
@@ -27,8 +27,8 @@ class LLMService {
             await this.provider.generateStream({
                 messages,
                 think,
-                ontoken: (data) => ws.send(JSON.stringify({ ...data, chatBoxId }))
-            }, async ({ status, content, thinking }) => {
+                ontoken
+            }, async function ({ status, content, thinking }) {
                 let message = ChatMessage.build({
                     ChatBoxId: chatBox.dataValues.id,
                     role: "assistant",

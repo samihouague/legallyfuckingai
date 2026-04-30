@@ -74,11 +74,4 @@ ChatMessage.belongsTo(ChatBox, {
     as: "chatBox",
 });
 
-(async function () {
-    await ChatBox.drop();
-    console.log('All tables dropped!');
-    await sequelize.sync({ force: true });
-    console.log('All models were synchronized successfully.');
-})();
-
 export { ChatBox, ChatMessage };

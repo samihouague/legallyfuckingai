@@ -78,11 +78,13 @@ export default function ChatPage() {
     let thinkingBuffer = "";
 
     const unsubscribe = ws.subscribe((data) => {
+      console.log(data);
       if (data.status == "auth") {
         localStorage.removeItem("token");
         navigate("/auth");
         return;
       }
+
       if (data.chatBoxId != activeConversation)
         return;
 
@@ -258,7 +260,7 @@ export default function ChatPage() {
       if (response.status != 201)
         return;
       await response.json();
-      setConversations((prev) => prev.filter((elt) => elt.id === id));
+      setConversations((prev) => prev.filter((elt) => elt.id !== id));
     } catch (err) {
       console.error(err);
     }
