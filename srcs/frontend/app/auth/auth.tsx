@@ -66,7 +66,7 @@ export default function Auth() {
 
         {/* HEADER */}
         <div className="auth-header">
-          <h2>⚖️ LegalIA</h2>
+          <h2>⚖️ Transcendence AI</h2>
           <p>{mode === "login" ? "Connexion" : "Créer un compte"}</p>
         </div>
 

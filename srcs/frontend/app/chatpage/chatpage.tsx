@@ -280,7 +280,7 @@ export default function ChatPage() {
       {/* SIDEBAR */}
       <aside className="w-80 bg-white/5 backdrop-blur-2xl border-r border-white/10 flex flex-col">
         <div className="p-5 border-b border-white/10">
-          <div className="text-lg font-semibold">⚖️ IA Juridique</div>
+          <div className="text-lg font-semibold">⚖️ Assistant Chat</div>
           <div className="text-xs text-white/40">Assistant entreprise</div>
         </div>
 
