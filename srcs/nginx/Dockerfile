@@ -14,6 +14,7 @@ http://nginx.org/packages/debian $(lsb_release -cs) nginx" \
 
 RUN apt update -y && apt install -y nginx
 
+COPY ./index.html /var/www/
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
 RUN openssl req -batch -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
