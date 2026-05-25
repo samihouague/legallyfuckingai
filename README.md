@@ -1,4 +1,4 @@
-# 🤖 Local AI Assistant — Documents & Workflow Generator
+# 🤖 Local AI Router — Hybrid Local/Cloud AI Orchestration
 
 ![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
 ![Node.js](https://img.shields.io/badge/Node.js-Backend-green)
@@ -7,8 +7,6 @@
 ![Database](https://img.shields.io/badge/MariaDB-Database-blue)
 
 ---
-
-# 🤖 Local AI Router — Hybrid Local/Cloud AI Orchestration
 
 Docker Node.js React AI RAG Ollama
 
